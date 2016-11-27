@@ -1,0 +1,155 @@
+#Grunt背景
+- grunt是一个前端集成解决方案
+- 解决前端开发自动化的问题：
+- 1. 代码规范：开发团队代码风格不统一，如何强制开发规范 
+- 2. 组件库：前期开发的组件库如何维护和使用
+- 3. 模块化： 如何模块化前端项目
+- 4. 部署：服务器部署前必须的压缩，检查流程如何简化和完善
+- 目前主流的前端集成解决方案：Yeoman+Bower+Grunt/Gulp
+- yeoman是用来生成项目目录及文件结构等；bower是用来管理前端开发所需要的包的，比如我需要jquery，那bower可以来帮我下载jquery；而grunt是一个构建工具，比如项目开发完成了，需要压缩、打包等等，grunt也可以使用bower插件来管理包。
+- Grunt的定位是Build tool （例如ant、 gulp， buildy，jasy等等）
+- 整合可视化的应用： CodeKit（Mac only)， FIS，Spirit
+
+#nodejs 简介
+- node是一个javascript runtime，让js脱离浏览器可以在服务器端运行
+- node安装：前往node官网，点击INSTALL按钮，一键式傻瓜安装
+- windows中可以用git带的git bash 或者power shell
+- npm： node pacakage manager
+- node的配置文件：package.json
+- 你可拷贝一个已经配置过得package.json文件，然后执行npm install；也可以在项目目录下执行npm init 按照提示进行package.json文件的配置
+- 设置源: npm config set registry http://registry.npm.taobao.org/
+
+#Yeoman
+- 现代Web App的脚手架工具
+- 在Web项目的开始阶段，使用yeoman来生成项目的文件，代码结构
+- Yeoman自动将最佳实践和工具整合进来，加快和方便了后期开发。
+- 生成器：安装不同的框架工具生成结构，例如AngularJS的生成器，移动端应用的生成器
+- Yeoman负责通用的开发部署工作：代码校验，测试，压缩等等， 其余交给生成器自由发挥
+- 安装：npm install -g yo
+- 验证：  yo --version
+
+#Bower
+- Web的包管理器：只要告诉bower需要哪个库，哪个版本，bower就会去下载好。不用自己去找，下载，拷贝到正确位置。
+- Web站点组成：框架、库、公共部分等
+- 安装： npm install -g bower
+- 验证： bower -v
+
+#grunt安装
+- 是build tool
+- 实现自动化，建设像压缩、编译、单元测试、代码校验这种重复，与无业务不相关的工作，让开发者更专注业务。
+- Grunt生态环境强大，基本所有的任务都有grunt自动化插件
+- 安装： npm install -g grunt-cli
+- 验证： grunt --version
+
+#yeoman 使用
+- 安装generator：npm install -g generator-angular
+- 在工程目录中输入： yo angular learnangular
+- 生成的目录结构中有package.json： "grunt": "^0.4.5", 严格的版本匹配
+
+#Sass
+- css的扩展语言，还有less，stylus等等
+- 安装Ruby：下载ruby安装文件，并安装
+- 安装sass：1. gem source -r https://rubygems.org/； 2. gem source -a http://rubygems.org/；3. gem install sass
+- 验证：sass -v
+
+#Bower的使用
+- bower install jquery
+- bower install bootstrap
+- 如果小众组件没有在bower注册，可以通过其他以下方式安装：
+1. Github短写安装： bower install jquery/jquery
+2. 项目完整github地址安装： bower install https://github.com/jquery/jquery
+- 如果组件没有在github上立项，可以通过URL安装：bower install http://...
+- 在bower网站搜索组件：jquery owner:jquery
+- 生成bower.json: bower init
+- 安装devDependencies： bower install angular --save-dev
+- 安装dependencies： bower install jquery --save
+- .bowerrc配置：一般用不到，使用默认配置即可
+- .bowerrc主要配置项:
+	"proxy": "http://proxy.tencent.com:8080",
+	"https-proxy": "https://proxy.tencent.com:8080",
+	"timeout": 60000
+- 源码如何使用bower管理的包？可以在源码里面手工引用，但很麻烦而且容易出错。需要结合grunt来使用。
+
+#开发环境搭建的资源
+至于在Win7上配置富前端环境，大家可以参考http://www.tuicool.com/articles/yqaYne
+包括git ruby compass python nodejs express yo grunt bower..等等配置以及针对国内环境的修改
+还需要单独针对yo, bower等更改镜像源以增加下载速度 可以去搜一搜
+如果有些网址访问不了/命令行下载失败的话 就要准备goagent/vpn等工具哦
+
+#Grunt使用
+- npm install -g generator-webapp
+- npm install generator-webapp@v0.6.2 (以后的版本就与教程不兼容了)
+- yo webapp grunt-by-yo
+- 三个基本概念： Task， Target， options
+- Task：Grunt把代码压缩、目录清除、创建目录等操作称为task；在initConfig里面配置的是一个个单元task，每一个task可以单独存在执行。
+- task配置属性: config, watch (对应grunt-contrib-watch task)
+- 加载单个任务：grunt.loadNpmTask('grunt-contrib-watch')
+- 加载package.json中全部grunt任务(grunt-开始的)： require('load-grunt-tasks')
+- Target：每一个task包含自己的targets和options， options是target的配置项
+- 运行单个task： grunt sass
+
+因为在新版本的webapp里面用gulp代替了grunt，gulp和grunt其实差不多，不过要跟着视频学习的话，可以用angular这个生成器,安装方法前面视频有说。
+yo angular yourProjectName
+之后，会询问是否用gulp代替grunt，选择否就可以了
+
+
+#开源软件版本宽松程度：
+MIT > BSD > ISC > Apache > GPL
+
+#从无到有创建一个Grunt项目：
+1. npm init: 创建package.json
+2. npm install grunt --save-dev: 安装grunt，并写入devDependecies配置项
+3. npm install load-grunt-tasks --save-dev: 安装 load-grunt-tasks 插件
+4. npm install time-grunt --save-dev: 安装 time-grunt 插件
+5. 安装几个基本的tasks:
+- npm install grunt-contrib-copy --save-dev: 文件拷贝
+- npm install grunt-contrib-clean --save-dev: 文件删除
+6. 创建app目录，把index.html和js目录放入app中
+7. 手工创建Gruntfile.js：touch Gruntfile.js
+8. 配置Gruntfile.js
+9. grunt copy: 试运行grunt任务
+10. copy有三种方式，File，File Array Format, File Object Format
+11. 文件可以用globbing pattern(基于通配符的匹配）实现
+* - 匹配任意数量字符，除/外
+** - 匹配任意数量字符，包括/
+？- 匹配单个字符，除/外
+{a,b}.js - 配置a.js或b.js
+！- 不匹配
+
+
+#解决版本问题
+我把yeoman删了，看了其他问题有个说用1.3.2，不知道跟yeoman的版本有没有关系，总之我安装了这个版本，然后去node_modules，把webapp的generator删了，再用npm install -g generator-webapp@v0.6.2，安装的webapp就是使用grunt的了，github上面，1.0.1版本的webapp也都是gulp，我不知道那个答案的答主的版本是哪里下的，我用0.6.2版本的就可以了，继续学习了
+
+版本问题，yeoman选用了v1.3.2 ，generator-webapp 选用了v1.0.1 ，就可以了！
+
+#OK的版本
+- yeoman选用了v1.3.2
+- 用Angular generator
+- 安装compass
+- grunt serve: 启动服务器，运行软件
+- serve是一个组合任务，包括以下子任务：
+1. if (target === 'dist') {
+      return grunt.task.run(['build', 'connect:dist:keepalive']);
+    }
+2.    grunt.task.run([
+		//清除'.tmp'文件夹
+      	'clean:server', 
+      	//为了解决用原始的方法引入bower管理的包的麻烦，通过bower.json文件配置，找到项目的components依赖，并将其引入到指定的html或者css文件中。
+      	'wiredep', 
+      	//并行运行任务：编译SASS文件为CSS文件，输出到指定文件夹
+      'concurrent:server',
+      'postcss:server',
+      //启动Node connect服务器
+      'connect:livereload',
+      //监听文件变化，执行指定任务
+      'watch'
+    ]);
+
+3. autoprefixer: 自动添加浏览器前缀的task
+
+- test是一个组合任务，包括以下子任务：
+
+grunt中文网站
+http://www.gruntjs.net/
+
+#build的时候会对资源添加MD5

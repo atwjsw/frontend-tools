@@ -1,0 +1,81 @@
+#菜单命令
+- toggle comment： Ctrl + /
+- Insert Line After: Ctrl + Enter
+- Expand Selection to Line: Ctrl + L
+- Expand Selection to Word: Ctrl + D
+- Settings - 修改user settings中的json配置文件可以改变用户配置
+
+#goto
+- goto - ctrl + p
+- goto - @ 找CSS选择器; 例如@body
+- 输入CSS属性时可以用模糊匹配。 如bgc for background-color
+- set syntax： ctrl+shift+p; js
+- goto - @ 找js函数; 例如@函数名
+
+#多行游标
+- Find and replace: CTRL + H
+- 方法1. 连续按Ctrl+D 选择， 按Ctrl+K可以跳过
+- 方法2. Ctrl+D选中第一个，ALT+F3
+- 方法3. CTRL+SHIFT+L
+- 方法4. SHIFT+按住鼠标右键拖动
+- Ctrl+shirt+D：复制游标所在行
+- 使用 Escape 可以退出多行游标模式
+
+#命令模式
+- CTRL+N
+- CTRL+SHIFT+P 进入命令模式
+- JS 进入Javascript语法模式
+- 输入其他字符进行模糊匹配，例如minimap，返回toggle：minimap命令
+
+#综合技巧
+- html补齐tag： Alt+.
+- emmet html5: !  或者 CTRL+E
+- 匹配html中元素： CTRL+P进入goto模式，再用#匹配
+- 在光标当前行下面添加1行: CTRL+ENTER
+- 在当前上方添加一行:ctrl+shirt+enter 
+- 快速缩写：（ul>.item$*10{content}）> 号生成子元素 ，$ 产生序号，{ }产生内容
+- 增加缩进：CTRL+]
+- 减少缩进：CTRL+[
+- .alt+f3 全选，可以选中一部分再选择所有有该部分的元素。如 >< 标签之间的两个符号
+- ctrl+shift+v 保持缩进粘贴
+
+#Package Control
+- 安装：去package control网站，sublime.wbond.net ->install按钮->把安装代码拷贝到view/show console里面-> Enter
+- package remove
+- package disable
+
+#Snippet
+- 加快编码，保持一致的编码风格
+- JavaScript snippet: fun, f, ife, for, 
+- JavaScript&nodejs snippet: gi (document.getElementById), cl (console.log)...)
+- jquery snippet: 先输入get,在提示清单里面选择$get, post
+
+#http requester
+- 一个在sublime里面测试http请求的插件，不需要使用浏览器
+
+#nettus fetch
+- 前端开发经常要下载一些类库，如jquery、underscore、backbone等等
+- 创建新工程时可以从旧工厂拷贝，但无法保证是最新版本，可以重新上网下载。
+- 但sublime里面有更好的方法: 1. 安装nettus fetch. 2. cTRL+SHIFT+P进入命令模式 3. fetch：manage 管理配置文件，可以添加类库地址
+4. 创建一个空文件，例如jquery.js, underscore.js 5. fetch:file下载远程文件
+
+#sidebarEnhancement
+- 从sublime中直接打开浏览器页面
+
+#DocBlockr快速添加注释
+- 加入注释块：/**回车
+- 加入函数注释块：在函数上方/**回车
+
+#lint语法和风格校验
+- 团队可以通过jslint统一风格
+- 1. PCI 安装sublimelinter； 2. PCI安装 sublimelinter-jshint; 
+- 3. nodejs: npm install -g jshint //注意powershell要用administrator权限运行
+- 4. 可以在.jshintrc中配置额外的配置项
+{
+	"eqeqeq":true,
+	"curly":true
+}
+- 在jshint.com/docs/options可以查找到更多的配置项
+
+
+
